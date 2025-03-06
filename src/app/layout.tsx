@@ -1,17 +1,15 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
+import {Rubik_Mono_One} from "next/font/google";
+import { ThemeProvider } from "next-themes";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+
+const rubik = Rubik_Mono_One({
+  subsets: ["latin"], // Load required subsets
+  weight: "400", // Rubik Mono One only supports weight 400
+  variable: "--font-rubik-mono-one", // Define CSS variable
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -26,9 +24,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+        className={` ${rubik.variable} scroll-smooth antialiased`}
+      >< ThemeProvider attribute="class">
         {children}
+        </ThemeProvider>
       </body>
     </html>
   );
